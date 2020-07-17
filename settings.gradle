@@ -1,2 +1,3 @@
+include ':sodalibrary'
 include ':app'
 rootProject.name = "soda"

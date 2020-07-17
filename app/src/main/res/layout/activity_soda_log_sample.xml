@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".SodaLogSampleActivity">
+
+    <Button
+        android:id="@+id/mLog1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="普通log"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mLog2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="字符串集合log"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mLog1" />
+
+    <Button
+        android:id="@+id/mLog3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bean log"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mLog2" />
+
+    <Button
+        android:id="@+id/mLog4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="strace log1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mLog3" />
+
+    <Button
+        android:id="@+id/mLog5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="strace log2"
+        app:layout_constraintLeft_toRightOf="@+id/mLog4"
+        app:layout_constraintTop_toBottomOf="@+id/mLog3" />
+
+    <Button
+        android:id="@+id/mLog6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="log view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mLog4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

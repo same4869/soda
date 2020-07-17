@@ -1,0 +1,8 @@
+### Soda开发日志
+
+#### Soda Log
+1.使用SodaLog作为对外接口类，一般无需init,支持打印方法名，行号，当前线程
+2.默认支持打印字符串，数组,如果需要支持json等更多复杂结构，可以在application的时候用SodaLogManager init全局塞一个config,这个config可以定制json处理器
+3.config可以是全局的，也可以每次都使用SodaLog.log来设置一个局部有效的
+4.支持在应用内显示recyclewview来打印日志
+5.支持日志保存在本地，并且可控制每个日志文件的最大大小，按时间排放，可以控制每个日志的最长存在时间
