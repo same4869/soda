@@ -13,6 +13,10 @@ class MainActivity : AppCompatActivity() {
         mLogBtn.setOnClickListener {
             startTargetActivity(SodaLogSampleActivity::class.java)
         }
+
+        mTabBottomBtn.setOnClickListener {
+            startTargetActivity(SodaTabBottomSampleActivity::class.java)
+        }
     }
 
     private fun startTargetActivity(clazz: Class<*>) {

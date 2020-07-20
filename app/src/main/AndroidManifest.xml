@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SodaLogSampleActivity"></activity>
+        <activity android:name=".SodaTabBottomSampleActivity"></activity>
+        <activity android:name=".SodaLogSampleActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

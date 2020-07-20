@@ -1,8 +1,14 @@
 package com.xun.sodalibrary.utils
 
+import android.content.Context
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.View
+import androidx.core.content.ContextCompat
+import java.text.ParseException
 
 /**
  * @Description:
@@ -42,3 +48,18 @@ val Number.dp2px
         this.toFloat(),
         Resources.getSystem().displayMetrics
     ).toInt()
+
+//通过字符串获得颜色
+fun getColorByString(colorStr: String): Int {
+    return try {
+        Color.parseColor(colorStr)
+    } catch (e: Exception) {
+        Color.parseColor("#777777")
+    }
+}
+
+fun Context.getDrawable(resId: Int): Drawable? {
+    return if (this.resources == null || resId <= -1) {
+        ColorDrawable()
+    } else ContextCompat.getDrawable(this, resId)
+}

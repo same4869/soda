@@ -25,4 +25,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mMainPanelTv" />
 
+    <Button
+        android:id="@+id/mTabBottomBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="soda tab bottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mLogBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
