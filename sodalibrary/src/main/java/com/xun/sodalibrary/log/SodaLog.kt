@@ -33,6 +33,14 @@ object SodaLog {
         log(Log.DEBUG, tag, contents)
     }
 
+    fun i(contents: Any) {
+        log(Log.INFO, "", contents)
+    }
+
+    fun i(tag: String = "", contents: Any) {
+        log(Log.INFO, tag, contents)
+    }
+
     fun log(type: Int, tag: String, contents: Any) {
         log(SodaLogManager.getConfig(), type, tag, contents)
     }

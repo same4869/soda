@@ -6,3 +6,6 @@
 
 #### Soda Tab Top
 1.顶部tab,实现逻辑和TabBottom类似，支持绑定vp，支持自动滚动默认露出前后两个
+
+#### Soda refresh
+1.下拉刷新控件，支持多个状态的回调，支持塞入自定义view，外部控制动画

@@ -43,4 +43,13 @@
         app:layout_constraintLeft_toRightOf="@id/mTabBottomBtn"
         app:layout_constraintTop_toBottomOf="@id/mLogBtn" />
 
+    <Button
+        android:id="@+id/mTabRefreshBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="soda refresh"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mTabBottomBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

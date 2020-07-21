@@ -1,15 +1,20 @@
 package com.xun.soda
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
+import com.xun.soda.views.SodaLottieOverView
+import com.xun.sodaui.refresh.ISodaRefresh
 import com.xun.sodaui.tab.comm.ISodaTabLayout
 import com.xun.sodaui.tab.top.SodaTabTopInfo
+import kotlinx.android.synthetic.main.activity_soda_refresh_sample.*
 import kotlinx.android.synthetic.main.activity_soda_tab_top_demo.*
+import kotlinx.android.synthetic.main.activity_soda_tab_top_demo.mSrl
 
 class SodaTabTopSampleActivity : AppCompatActivity() {
     private var tabsStr = arrayOf(
@@ -73,6 +78,20 @@ class SodaTabTopSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_soda_tab_top_demo)
+
+        mSrl.setRefreshOverView(SodaLottieOverView(applicationContext))
+        mSrl.setRefreshListener(object : ISodaRefresh.SodaRefreshListener {
+            override fun onRefresh() {
+                Handler().postDelayed({ mSrl.refreshFinished() }, 1000)
+            }
+
+            override fun enableRefresh(): Boolean {
+                return true
+            }
+
+        })
+        mSrl.setDisableRefreshScroll(true)
+
         initTabTop()
 
         mViewPager.adapter = pagerAdapter
