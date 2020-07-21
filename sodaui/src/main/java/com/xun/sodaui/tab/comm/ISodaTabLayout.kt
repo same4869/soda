@@ -10,7 +10,7 @@ import com.xun.sodaui.tab.bottom.SodaTabBottom
  */
 
 interface ISodaTabLayout<Tab : ViewGroup, D> {
-    fun findTab(data: D): SodaTabBottom?
+    fun findTab(data: D): Tab?
 
     fun addTabSelectedChangeListener(listener: OnTabSelectedListener<D>)
 

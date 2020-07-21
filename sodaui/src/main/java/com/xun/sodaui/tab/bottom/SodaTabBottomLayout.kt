@@ -72,6 +72,7 @@ class SodaTabBottomLayout @JvmOverloads constructor(
 
         addBackground()
 
+        selectedInfo = null
         tabSelectedChangeListeners.clear()
         val fl = FrameLayout(context)
         val height = tabBottomHeight.dp2px
