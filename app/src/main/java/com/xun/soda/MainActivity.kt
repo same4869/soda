@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         mTabRefreshBtn.setOnClickListener {
             startTargetActivity(SodaRefreshSampleActivity::class.java)
         }
+
+        mBannerBtn.setOnClickListener {
+            startTargetActivity(SodaBannerSampleActivity::class.java)
+        }
     }
 
     private fun startTargetActivity(clazz: Class<*>) {

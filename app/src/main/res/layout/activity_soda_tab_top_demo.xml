@@ -9,6 +9,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/mLogView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logview" />
+
         <com.xun.sodaui.tab.top.SodaTabTopLayout
             android:id="@+id/mTabTopLayout"
             android:layout_width="match_parent"

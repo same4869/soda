@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.xun.sodaui.banner.SodaBanner
+        android:id="@+id/mBanner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:autoPlay="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:loop="true" />
+
+    <TextView
+        android:id="@+id/mTvSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="切换指示器"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mBanner" />
+
+    <Switch
+        android:id="@+id/mAutoPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:text="是否自动播放"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/mTvSwitch"
+        app:layout_constraintTop_toBottomOf="@id/mBanner" />
+</androidx.constraintlayout.widget.ConstraintLayout>

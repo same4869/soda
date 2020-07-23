@@ -15,6 +15,7 @@ import com.xun.sodalibrary.R
 import com.xun.sodalibrary.log.SodaLogConfig
 import com.xun.sodalibrary.log.bean.SodaLogBean
 import com.xun.sodalibrary.utils.dp2px
+import com.xun.sodalibrary.utils.getColorByString
 import kotlinx.android.synthetic.main.sodalog_item.view.*
 
 /**
@@ -124,7 +125,7 @@ class SodaViewPrinter(activity: Activity) : SodaLogPrinter {
             return when (logLevel) {
                 Log.VERBOSE -> -0x444445
                 Log.DEBUG -> -0x1
-                Log.INFO -> -0x9578a7
+                Log.INFO -> getColorByString("#00ff00")
                 Log.WARN -> -0x444ad7
                 Log.ERROR -> -0x9498
                 else -> -0x100

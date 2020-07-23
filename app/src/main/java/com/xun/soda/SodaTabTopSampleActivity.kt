@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import com.xun.soda.views.SodaLottieOverView
+import com.xun.sodalibrary.log.SodaLogManager
+import com.xun.sodalibrary.log.printer.SodaViewPrinter
 import com.xun.sodaui.refresh.ISodaRefresh
 import com.xun.sodaui.tab.comm.ISodaTabLayout
 import com.xun.sodaui.tab.top.SodaTabTopInfo
@@ -78,6 +80,13 @@ class SodaTabTopSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_soda_tab_top_demo)
+
+        val viewPrinter = SodaViewPrinter(this)
+        SodaLogManager.addPrinter(viewPrinter)
+
+        mLogView.setOnClickListener {
+            viewPrinter.showLogView()
+        }
 
         mSrl.setRefreshOverView(SodaLottieOverView(applicationContext))
         mSrl.setRefreshListener(object : ISodaRefresh.SodaRefreshListener {

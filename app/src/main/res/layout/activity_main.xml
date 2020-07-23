@@ -52,4 +52,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mTabBottomBtn" />
 
+    <Button
+        android:id="@+id/mBannerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="soda banner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mTabRefreshBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
