@@ -20,7 +20,7 @@
         android:id="@+id/mLogBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="soda log"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mMainPanelTv" />
@@ -29,7 +29,7 @@
         android:id="@+id/mTabBottomBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="soda tab bottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mLogBtn" />
@@ -38,7 +38,7 @@
         android:id="@+id/mTabTopBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="soda tab top"
         app:layout_constraintLeft_toRightOf="@id/mTabBottomBtn"
         app:layout_constraintTop_toBottomOf="@id/mLogBtn" />
@@ -47,7 +47,7 @@
         android:id="@+id/mTabRefreshBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="soda refresh"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mTabBottomBtn" />
@@ -56,9 +56,18 @@
         android:id="@+id/mBannerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="soda banner"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mTabRefreshBtn" />
+
+    <Button
+        android:id="@+id/mRecyclerViewBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="RecyclerView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mBannerBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

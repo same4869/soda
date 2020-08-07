@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         mBannerBtn.setOnClickListener {
             startTargetActivity(SodaBannerSampleActivity::class.java)
         }
+
+        mRecyclerViewBtn.setOnClickListener {
+            startTargetActivity(SodaRecyclerViewActivity::class.java)
+        }
     }
 
     private fun startTargetActivity(clazz: Class<*>) {

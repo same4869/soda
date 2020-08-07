@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SodaRecyclerViewActivity">
+
+    <Button
+        android:id="@+id/mBaseAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="base_adapter" />
+
+    <Button
+        android:id="@+id/mSimpleAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="simple_adapter" />
+
+    <Button
+        android:id="@+id/mDiyAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="diy_adapter" />
+
+</LinearLayout>

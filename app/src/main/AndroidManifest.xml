@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SodaBannerSampleActivity"></activity>
+        <activity android:name=".SodaRecyclerDiyAdapterActivity"/>
+        <activity android:name=".SodaRecyclerSimpleAdapterActivity"/>
+        <activity android:name=".SodaRecyclerBaseAdapterActivity"/>
+        <activity android:name=".SodaRecyclerViewActivity" />
+        <activity android:name=".SodaBannerSampleActivity" />
         <activity android:name=".SodaRefreshSampleActivity" />
         <activity android:name=".SodaTabTopSampleActivity" />
         <activity android:name=".SodaTabBottomSampleActivity" />
