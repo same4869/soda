@@ -1,8 +1,9 @@
-package com.xun.soda
+package com.xun.soda.recyclerview
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.xun.soda.R
 import kotlinx.android.synthetic.main.activity_recycler_view.*
 
 class SodaRecyclerViewActivity : AppCompatActivity() {

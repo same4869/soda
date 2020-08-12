@@ -1,4 +1,4 @@
-package com.xun.soda.bean
+package com.xun.soda.recyclerview
 
 /**
  * @Description:

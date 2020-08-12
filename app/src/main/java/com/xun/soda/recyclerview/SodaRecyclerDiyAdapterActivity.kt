@@ -1,13 +1,11 @@
-package com.xun.soda
+package com.xun.soda.recyclerview
 
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xun.soda.adapter.PersonAdapter
-import com.xun.soda.bean.PersonBean
-import com.xun.soda.bean.PersonBean2
+import com.xun.soda.R
 import kotlinx.android.synthetic.main.activity_soda_recycler_base_adapter.*
 
 class SodaRecyclerDiyAdapterActivity : AppCompatActivity() {
@@ -17,7 +15,10 @@ class SodaRecyclerDiyAdapterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_soda_recycler_base_adapter)
 
-        adapter = PersonAdapter(arrayListOf(),applicationContext)
+        adapter = PersonAdapter(
+            arrayListOf(),
+            applicationContext
+        )
 
         mRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
         mRecyclerView.adapter = adapter
@@ -34,11 +35,20 @@ class SodaRecyclerDiyAdapterActivity : AppCompatActivity() {
 
     private fun initData(): List<Any> {
         val list = mutableListOf<Any>()
-        val personBean1 = PersonBean("zhangsan", 1, 18, "你好啊")
-        val personBean2 = PersonBean("李四", 1, 17, "你好啊1")
-        val personBean3 = PersonBean("王五", 0, 16, "你好啊2")
-        val personBean4 = PersonBean2("赵柳", 0, 15, "你好啊3")
-        val personBean5 = PersonBean2("孙⑦8888888", 1, 14, "你好啊999999999")
+        val personBean1 =
+            PersonBean("zhangsan", 1, 18, "你好啊")
+        val personBean2 =
+            PersonBean("李四", 1, 17, "你好啊1")
+        val personBean3 =
+            PersonBean("王五", 0, 16, "你好啊2")
+        val personBean4 =
+            PersonBean2("赵柳", 0, 15, "你好啊3")
+        val personBean5 = PersonBean2(
+            "孙⑦8888888",
+            1,
+            14,
+            "你好啊999999999"
+        )
         list.add(personBean1)
         list.add(personBean2)
         list.add(personBean3)

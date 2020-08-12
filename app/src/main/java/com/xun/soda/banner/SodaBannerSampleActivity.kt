@@ -1,10 +1,10 @@
-package com.xun.soda
+package com.xun.soda.banner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
-import com.xun.soda.bean.SodaBannerBeanImp
+import com.xun.soda.R
 import com.xun.sodalibrary.log.SodaLog
 import com.xun.sodaui.banner.core.IBindAdapter
 import com.xun.sodaui.banner.core.SodaBannerBean
@@ -12,7 +12,6 @@ import com.xun.sodaui.banner.indicator.ISodaIndicator
 import com.xun.sodaui.banner.indicator.SodaCircleIndicator
 import com.xun.sodaui.banner.indicator.SodaNumIndicator
 import kotlinx.android.synthetic.main.activity_soda_banner_sample.*
-import kotlinx.android.synthetic.main.banner_item_layout.*
 import kotlinx.android.synthetic.main.banner_item_layout.view.*
 
 class SodaBannerSampleActivity : AppCompatActivity() {

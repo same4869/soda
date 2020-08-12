@@ -1,8 +1,8 @@
-package com.xun.soda.adapter
+package com.xun.soda.recyclerview
 
 import android.content.Context
-import com.xun.soda.bean.PersonBean
-import com.xun.soda.bean.PersonBean2
+import com.xun.soda.recyclerview.PersonBean
+import com.xun.soda.recyclerview.PersonBean2
 import com.xun.soda.views.PersonView
 import com.xun.soda.views.PersonView2
 import com.xun.sodaui.recyclerview.adapter.SodaBaseAdapter

@@ -1,20 +1,19 @@
-package com.xun.soda
+package com.xun.soda.tabview
 
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
+import com.xun.soda.R
 import com.xun.soda.views.SodaLottieOverView
 import com.xun.sodalibrary.log.SodaLogManager
 import com.xun.sodalibrary.log.printer.SodaViewPrinter
 import com.xun.sodaui.refresh.ISodaRefresh
 import com.xun.sodaui.tab.comm.ISodaTabLayout
 import com.xun.sodaui.tab.top.SodaTabTopInfo
-import kotlinx.android.synthetic.main.activity_soda_refresh_sample.*
 import kotlinx.android.synthetic.main.activity_soda_tab_top_demo.*
 import kotlinx.android.synthetic.main.activity_soda_tab_top_demo.mSrl
 

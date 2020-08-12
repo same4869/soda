@@ -1,4 +1,4 @@
-package com.xun.soda
+package com.xun.soda.refresh
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.xun.soda.R
 import com.xun.sodaui.refresh.ISodaRefresh
 import com.xun.sodaui.refresh.SodaTextOverView
 import kotlinx.android.synthetic.main.activity_soda_refresh_sample.*
@@ -57,7 +58,8 @@ class SodaRefreshSampleActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             return MyViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_layout, parent, false)
             )
         }
 

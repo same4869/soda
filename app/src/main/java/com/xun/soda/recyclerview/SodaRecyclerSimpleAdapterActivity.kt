@@ -1,12 +1,11 @@
-package com.xun.soda
+package com.xun.soda.recyclerview
 
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xun.soda.bean.PersonBean
-import com.xun.soda.bean.PersonBean2
+import com.xun.soda.R
 import com.xun.soda.views.PersonView
 import com.xun.soda.views.PersonView2
 import com.xun.sodaui.recyclerview.adapter.SodaSimpleAdapter
@@ -38,11 +37,16 @@ class SodaRecyclerSimpleAdapterActivity : AppCompatActivity() {
 
     private fun initData(): List<Any> {
         val list = mutableListOf<Any>()
-        val personBean1 = PersonBean("zhangsan", 1, 18, "你好啊")
-        val personBean2 = PersonBean("李四", 1, 17, "你好啊1")
-        val personBean3 = PersonBean("王五", 0, 16, "你好啊2")
-        val personBean4 = PersonBean2("赵柳", 0, 15, "你好啊3")
-        val personBean5 = PersonBean2("孙⑦", 1, 14, "你好啊4")
+        val personBean1 =
+            PersonBean("zhangsan", 1, 18, "你好啊")
+        val personBean2 =
+            PersonBean("李四", 1, 17, "你好啊1")
+        val personBean3 =
+            PersonBean("王五", 0, 16, "你好啊2")
+        val personBean4 =
+            PersonBean2("赵柳", 0, 15, "你好啊3")
+        val personBean5 =
+            PersonBean2("孙⑦", 1, 14, "你好啊4")
         list.add(personBean1)
         list.add(personBean2)
         list.add(personBean3)

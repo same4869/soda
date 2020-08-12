@@ -1,4 +1,4 @@
-package com.xun.soda.bean
+package com.xun.soda.banner
 
 import com.xun.sodaui.banner.core.SodaBannerBean
 

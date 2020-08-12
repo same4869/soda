@@ -12,15 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SodaRecyclerDiyAdapterActivity"/>
-        <activity android:name=".SodaRecyclerSimpleAdapterActivity"/>
-        <activity android:name=".SodaRecyclerBaseAdapterActivity"/>
-        <activity android:name=".SodaRecyclerViewActivity" />
-        <activity android:name=".SodaBannerSampleActivity" />
-        <activity android:name=".SodaRefreshSampleActivity" />
-        <activity android:name=".SodaTabTopSampleActivity" />
-        <activity android:name=".SodaTabBottomSampleActivity" />
-        <activity android:name=".SodaLogSampleActivity" />
+        <activity android:name=".sodaclean.SodaCleanMvpActivity"></activity>
+        <activity android:name=".sodaclean.SodaCleanActivity" />
+        <activity android:name=".recyclerview.SodaRecyclerDiyAdapterActivity" />
+        <activity android:name=".recyclerview.SodaRecyclerSimpleAdapterActivity" />
+        <activity android:name=".recyclerview.SodaRecyclerBaseAdapterActivity" />
+        <activity android:name=".recyclerview.SodaRecyclerViewActivity" />
+        <activity android:name=".banner.SodaBannerSampleActivity" />
+        <activity android:name=".refresh.SodaRefreshSampleActivity" />
+        <activity android:name=".tabview.SodaTabTopSampleActivity" />
+        <activity android:name=".tabview.SodaTabBottomSampleActivity" />
+        <activity android:name=".log.SodaLogSampleActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

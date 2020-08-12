@@ -1,9 +1,10 @@
-package com.xun.soda
+package com.xun.soda.tabview
 
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.xun.soda.R
 import com.xun.sodalibrary.utils.dp2px
 import com.xun.sodaui.tab.bottom.SodaTabBottomInfo
 import com.xun.sodaui.tab.comm.ISodaTabLayout
@@ -36,7 +37,8 @@ class SodaTabBottomSampleActivity : AppCompatActivity() {
             "#ff656667",
             "#ffd44949"
         )
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.fire, null)
+        val bitmap = BitmapFactory.decodeResource(resources,
+            R.drawable.fire, null)
         val infoCategory = SodaTabBottomInfo(
             "分类",
             bitmap,

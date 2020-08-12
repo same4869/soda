@@ -26,6 +26,7 @@ class SodaSimpleAdapter<T : Any>(val context: Context, dataList: MutableList<T> 
         return data2TypeMap[data.javaClass.name] ?: AdapterUIMappingProtocol.ERROR_ITEM_TYPE
     }
 
+    //注意：使用SodaSimpleAdapter时所映射的view必须包含一个context的单参数构造函数
     override fun createItem(type: Int): AdapterItemView<*>? {
         val viewClass = type2ViewMap[type] ?: return null
         val contextConstructor = viewClass.getDeclaredConstructor(Context::class.java)

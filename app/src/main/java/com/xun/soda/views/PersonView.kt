@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.xun.soda.R
-import com.xun.soda.bean.PersonBean
+import com.xun.soda.recyclerview.PersonBean
 import com.xun.sodaui.recyclerview.interf.AdapterItemView
 import kotlinx.android.synthetic.main.view_recycler_person_item.view.*
 
