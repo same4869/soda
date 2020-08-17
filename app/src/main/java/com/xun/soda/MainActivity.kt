@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xun.soda.banner.SodaBannerSampleActivity
+import com.xun.soda.executor.SodaExecutorActivity
 import com.xun.soda.log.SodaLogSampleActivity
 import com.xun.soda.recyclerview.SodaRecyclerViewActivity
 import com.xun.soda.refresh.SodaRefreshSampleActivity
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
 
         mSodaCleanBtn.setOnClickListener {
             startTargetActivity(SodaCleanActivity::class.java)
+        }
+
+        mSodaExecutor.setOnClickListener {
+            startTargetActivity(SodaExecutorActivity::class.java)
         }
     }
 
