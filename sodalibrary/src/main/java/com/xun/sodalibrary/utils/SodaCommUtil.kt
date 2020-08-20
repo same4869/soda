@@ -1,10 +1,12 @@
 package com.xun.sodalibrary.utils
 
+import android.app.Application
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Environment
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -15,6 +17,8 @@ import java.text.ParseException
  * @Author:         xwang
  * @CreateDate:     2020/7/16
  */
+
+lateinit var APPLICATION: Application
 
 //显示
 fun View.show() {
@@ -62,4 +66,24 @@ fun Context.getDrawable(resId: Int): Drawable? {
     return if (this.resources == null || resId <= -1) {
         ColorDrawable()
     } else ContextCompat.getDrawable(this, resId)
+}
+
+fun getCacheDirPath(): String {
+    val externalStorageAvailable =
+        Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    return if (externalStorageAvailable) {
+        APPLICATION.externalCacheDir?.path ?: APPLICATION.cacheDir.path
+    } else {
+        APPLICATION.cacheDir?.path ?: ""
+    }
+}
+
+fun getFileDirPath(): String {
+    val externalStorageAvailable =
+        Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    return if (externalStorageAvailable) {
+        APPLICATION.getExternalFilesDir(null)?.path ?: APPLICATION.filesDir.path
+    } else {
+        APPLICATION.filesDir?.path ?: ""
+    }
 }

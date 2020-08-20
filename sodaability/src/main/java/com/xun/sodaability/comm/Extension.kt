@@ -1,4 +1,4 @@
-package com.xun.soda.comm
+package com.xun.sodaability.comm
 
 import android.annotation.SuppressLint
 import android.view.View

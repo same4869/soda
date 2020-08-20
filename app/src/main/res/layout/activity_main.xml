@@ -88,4 +88,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mSodaCleanBtn" />
 
+    <Button
+        android:id="@+id/mSodaDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Soda Download"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mSodaExecutor" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

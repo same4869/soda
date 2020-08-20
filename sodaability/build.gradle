@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: 'soda-ability-version.gradle'
 
 android {
     compileSdkVersion 29
@@ -12,7 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -27,8 +27,15 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    //log中需要在view中显示rv
-    api "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation project(":sodalibrary")
+
+    implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
+
+    implementation okhttp3
+    implementation retrofit2
+    implementation rxjava2
+    implementation gson
 }

@@ -1,3 +1,5 @@
+include ':sodaability'
+include ':sodahotfix'
 include ':sodaui'
 include ':sodalibrary'
 include ':app'

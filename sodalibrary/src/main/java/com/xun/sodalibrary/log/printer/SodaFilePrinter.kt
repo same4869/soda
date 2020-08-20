@@ -189,22 +189,6 @@ class SodaFilePrinter() : SodaLogPrinter {
          */
         fun ready(newFileName: String): Boolean {
             preFileName = findTargetDir(newFileName).name
-//            logFile = File(mLogPath, newFileName)
-
-//            if (!logFile!!.exists()) {
-//                try {
-//                    val parent = logFile?.parentFile
-//                    if (parent != null && !parent.exists()) {
-//                        parent.mkdirs()
-//                    }
-//                    logFile?.createNewFile()
-//                } catch (e: IOException) {
-//                    e.printStackTrace()
-//                    preFileName = null
-//                    logFile = null
-//                    return false
-//                }
-//            }
 
             val partLogFile = findTargetDir(newFileName)
             if (!partLogFile.exists()) {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xun.soda.banner.SodaBannerSampleActivity
+import com.xun.soda.download.SodaDownloadActivity
 import com.xun.soda.executor.SodaExecutorActivity
 import com.xun.soda.log.SodaLogSampleActivity
 import com.xun.soda.recyclerview.SodaRecyclerViewActivity
@@ -11,6 +12,7 @@ import com.xun.soda.refresh.SodaRefreshSampleActivity
 import com.xun.soda.sodaclean.SodaCleanActivity
 import com.xun.soda.tabview.SodaTabBottomSampleActivity
 import com.xun.soda.tabview.SodaTabTopSampleActivity
+import com.xun.sodaability.comm.onClick
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +50,10 @@ class MainActivity : AppCompatActivity() {
 
         mSodaExecutor.setOnClickListener {
             startTargetActivity(SodaExecutorActivity::class.java)
+        }
+
+        mSodaDownload.onClick {
+            startTargetActivity(SodaDownloadActivity::class.java)
         }
     }
 

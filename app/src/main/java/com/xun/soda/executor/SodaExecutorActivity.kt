@@ -3,7 +3,7 @@ package com.xun.soda.executor
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xun.soda.R
-import com.xun.soda.comm.onClick
+import com.xun.sodaability.comm.onClick
 import com.xun.sodalibrary.executor.SodaExecutor
 import com.xun.sodalibrary.log.SodaLog
 import kotlinx.android.synthetic.main.activity_soda_executor.*

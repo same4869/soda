@@ -1,8 +1,8 @@
 package com.xun.soda.sodaclean
 
-import com.xun.soda.comm.applySchedulers
 import com.xun.soda.comm.disposeOnDestroy
 import com.xun.soda.sodaclean.api.GithubService
+import com.xun.sodaability.comm.applySchedulers
 import com.xun.sodalibrary.architecture.Action
 import com.xun.sodalibrary.architecture.SodaLifePresenter
 import com.xun.sodalibrary.architecture.SodaPageStatus
@@ -33,19 +33,19 @@ class GithubPresenter(val view: SodaRvPageProtocol) : SodaLifePresenter() {
             page = 0
         }
         val requestPage = if (loadMore) page + 1 else page
-        apiService.searchRepos(searchWord + IN_QUALIFIER,requestPage,PAGE_SIZE).applySchedulers()
+        apiService.searchRepos(searchWord + IN_QUALIFIER, requestPage, PAGE_SIZE).applySchedulers()
             .doOnSubscribe {
                 view.refreshPageStatus(if (loadMore) SodaPageStatus.START_LOAD_MORE else SodaPageStatus.START_LOAD_PAGE_DATA)
             }.doOnTerminate {
                 view.refreshPageStatus(if (loadMore) SodaPageStatus.END_LOAD_MORE else SodaPageStatus.END_LOAD_PAGE_DATA)
-            }.subscribe ({
+            }.subscribe({
                 if (loadMore) {
                     page++
                 }
                 val list = arrayListOf<Any>("github 搜索 Android 的结果 : ")
                 list.addAll(it.items)
                 view.refreshDatas(list, loadMore)
-            },{
+            }, {
                 view.refreshPageStatus(SodaPageStatus.NET_ERROR)
             }).disposeOnDestroy(getLifeOwner())
     }

@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.xun.sodalibrary.log.SodaLogConfig
 import com.xun.sodalibrary.log.SodaLogManager
 import com.xun.sodalibrary.log.printer.SodaFilePrinter
+import com.xun.sodalibrary.utils.APPLICATION
 
 /**
  * @Description:
@@ -15,6 +16,9 @@ import com.xun.sodalibrary.log.printer.SodaFilePrinter
 class SodaSampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        APPLICATION = this
+
         SodaLogManager.init(object : SodaLogConfig() {
             override fun injectJsonParser(): JsonParser? {
                 return object : JsonParser {
