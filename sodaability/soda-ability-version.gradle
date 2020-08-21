@@ -1,5 +1,6 @@
 rootProject.ext {
     versions = [
+            versionName              : "1.0.0",
             gsonVersion              : "2.8.6",
             rxJava2Version           : "2.2.19",
             rxAndroid2Version        : "2.1.1",

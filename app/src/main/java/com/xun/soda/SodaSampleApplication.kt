@@ -2,6 +2,7 @@ package com.xun.soda
 
 import android.app.Application
 import com.google.gson.Gson
+import com.xun.sodaability.hotfix.tinker.app.SodaTinkerApplicationLike
 import com.xun.sodalibrary.log.SodaLogConfig
 import com.xun.sodalibrary.log.SodaLogManager
 import com.xun.sodalibrary.log.printer.SodaFilePrinter
@@ -13,11 +14,10 @@ import com.xun.sodalibrary.utils.APPLICATION
  * @CreateDate:     2020/7/16
  */
 
-class SodaSampleApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
+class SodaSampleApplication : SodaTinkerApplicationLike.InitInApplicationInterface {
 
-        APPLICATION = this
+    override fun onInitInApplication(application: Application) {
+        APPLICATION = application
 
         SodaLogManager.init(object : SodaLogConfig() {
             override fun injectJsonParser(): JsonParser? {
@@ -28,7 +28,7 @@ class SodaSampleApplication : Application() {
                 }
             }
         }, SodaFilePrinter().apply {
-            init(applicationContext.cacheDir.absolutePath, 60 * 1000 * 60)
+            init(application.cacheDir.absolutePath, 60 * 1000 * 60)
         })
     }
 }

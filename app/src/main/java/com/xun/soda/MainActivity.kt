@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.xun.soda.banner.SodaBannerSampleActivity
 import com.xun.soda.download.SodaDownloadActivity
 import com.xun.soda.executor.SodaExecutorActivity
+import com.xun.soda.hotfix.SodaHotfixTinkerActivity
 import com.xun.soda.log.SodaLogSampleActivity
 import com.xun.soda.recyclerview.SodaRecyclerViewActivity
 import com.xun.soda.refresh.SodaRefreshSampleActivity
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
 
         mSodaDownload.onClick {
             startTargetActivity(SodaDownloadActivity::class.java)
+        }
+
+        mSodaHotFixTinker.onClick {
+            startTargetActivity(SodaHotfixTinkerActivity::class.java)
         }
     }
 

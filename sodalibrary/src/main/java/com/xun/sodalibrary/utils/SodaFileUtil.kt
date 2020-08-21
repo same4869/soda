@@ -3,6 +3,8 @@ package com.xun.sodalibrary.utils
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.math.BigInteger
+import java.security.MessageDigest
 
 /**
  * @Description:
@@ -66,6 +68,43 @@ object SodaFileUtil {
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
             false
+        }
+    }
+
+    fun getFileMD5(file: File): String? {
+        if (!file.isFile) {
+            return null
+        }
+        var digest: MessageDigest? = null
+        var `in`: FileInputStream? = null
+        val buffer = ByteArray(1024)
+        var len: Int
+        try {
+            digest = MessageDigest.getInstance("MD5")
+            `in` = FileInputStream(file)
+            len = `in`.read(buffer, 0, 1024)
+            while (len != -1) {
+                digest!!.update(buffer, 0, len)
+                len = `in`.read(buffer, 0, 1024)
+            }
+            `in`.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
+
+        val bigInt = BigInteger(1, digest!!.digest())
+        val md5Str = bigInt.toString(16)
+        return if (md5Str.length < 16) {
+            val temp0 = 16 - md5Str.length
+            val sb = StringBuilder()
+            for (i in 0 until temp0) {
+                sb.append("0")
+            }
+            sb.append(md5Str)
+            sb.toString()
+        } else {
+            md5Str
         }
     }
 

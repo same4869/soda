@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: '../sodaability/tinker.gradle'
 
 android {
     compileSdkVersion 29
@@ -14,9 +15,25 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        myConfig {
+            storeFile file("soda_key.jks")
+            storePassword "wangxun0902"
+            keyAlias "android"
+            keyPassword "wangxun0902"
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            signingConfig signingConfigs.myConfig
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

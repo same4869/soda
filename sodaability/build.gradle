@@ -33,9 +33,12 @@ dependencies {
     implementation project(":sodalibrary")
 
     implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
-
     implementation okhttp3
     implementation retrofit2
     implementation rxjava2
     implementation gson
+
+
+    api 'androidx.multidex:multidex:2.0.1'
+    api "com.tencent.tinker:tinker-android-lib:1.9.14.7"
 }
