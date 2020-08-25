@@ -11,7 +11,7 @@ import com.xun.sodaability.hotfix.tinker.utils.Utils
 import java.io.File
 
 class SampleResultService : DefaultTinkerResultService() {
-    private val TAG = "sodaTinker"
+    private val TAG = SodaTinkerManager.SODA_TINKER_LOG_TAG
 
 
     override fun onPatchResult(result: PatchResult?) {
@@ -27,17 +27,15 @@ class SampleResultService : DefaultTinkerResultService() {
         val handler = Handler(Looper.getMainLooper())
         handler.post {
             if (result.isSuccess) {
-//                SodaTinkerManager.uploadFeedbackAboutPatch(applicationContext,"patch merge success",1)
-////                Toast.makeText(applicationContext, "patch success, please restart process", Toast.LENGTH_LONG).show()
-//                SodaTinkerManager.resetSafeModeCount(applicationContext)
-//                SodaTinkerManager.exitSafeMode(applicationContext)
-//                sodaTinkerManager.enterSafeMode(applicationContext)
+                SodaTinkerManager.setupPatchFeedbackInfo(applicationContext,"patch merge success",1)
+//                Toast.makeText(applicationContext, "patch success, please restart process", Toast.LENGTH_LONG).show()
+                SodaTinkerManager.resetSafeModeCount()
+                SodaTinkerManager.exitSafeMode()
             } else {
-//                SodaTinkerManager.uploadFeedbackAboutPatch(applicationContext,"patch merge failed",1)
-//                if(SodaTinkerManager.addSafeModeCount(applicationContext) >= 3){
-//                    SodaTinkerManager.enterSafeMode(applicationContext)
-//                }
-
+                SodaTinkerManager.setupPatchFeedbackInfo(applicationContext,"patch merge failed",1)
+                if(SodaTinkerManager.addSafeModeCount() >= SodaTinkerManager.TINKER_ENTER_SAFE_MODE_COUNT){
+                    SodaTinkerManager.enterSafeMode()
+                }
 //                Toast.makeText(applicationContext, "patch fail, please check reason", Toast.LENGTH_LONG).show()
             }
 
@@ -72,6 +70,6 @@ class SampleResultService : DefaultTinkerResultService() {
     private fun restartProcess() {
         TinkerLog.i(TAG, "app is background now, i can kill quietly")
         //you can send service or broadcast intent to restart your process
-        //android.os.Process.killProcess(android.os.Process.myPid())
+        android.os.Process.killProcess(android.os.Process.myPid())
     }
 }

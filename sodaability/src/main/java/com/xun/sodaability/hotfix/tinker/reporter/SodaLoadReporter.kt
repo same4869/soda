@@ -16,29 +16,29 @@ import java.io.File
 class SodaLoadReporter(context: Context?) : DefaultLoadReporter(context) {
     override fun onLoadPatchListenerReceiveFail(patchFile: File, errorCode: Int) {
         super.onLoadPatchListenerReceiveFail(patchFile, errorCode)
-        LogUtils.d("sodaTinker", "---onLoadPatchListenerReceiveFail")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadPatchListenerReceiveFail")
     }
 
     override fun onLoadResult(patchDirectory: File, loadCode: Int, cost: Long) {
         super.onLoadResult(patchDirectory, loadCode, cost)
-        LogUtils.d("sodaTinker", "---onLoadResult loadCode:$loadCode")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadResult loadCode:$loadCode")
         when (loadCode) {
             ShareConstants.ERROR_LOAD_OK -> {
-//                if (SodaTinkerManager.getPatchApply(context)) {
-//                    SodaTinkerManager.savePatchLoadSuc(context, true)
-//                }
+                if (SodaTinkerManager.getPatchApply(context)) {
+                    SodaTinkerManager.savePatchLoadSuc( true)
+                }
             }
         }
     }
 
     override fun onLoadException(e: Throwable, errorCode: Int) {
         super.onLoadException(e, errorCode)
-        LogUtils.d("sodaTinker", "---onLoadException $errorCode ${e.message}")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadException $errorCode ${e.message}")
     }
 
     override fun onLoadFileMd5Mismatch(file: File, fileType: Int) {
         super.onLoadFileMd5Mismatch(file, fileType)
-        LogUtils.d("sodaTinker", "---onLoadFileMd5Mismatch")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadFileMd5Mismatch")
     }
 
     /**
@@ -50,12 +50,12 @@ class SodaLoadReporter(context: Context?) : DefaultLoadReporter(context) {
      */
     override fun onLoadFileNotFound(file: File, fileType: Int, isDirectory: Boolean) {
         super.onLoadFileNotFound(file, fileType, isDirectory)
-        LogUtils.d("sodaTinker", "---onLoadFileNotFound")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadFileNotFound")
     }
 
     override fun onLoadPackageCheckFail(patchFile: File, errorCode: Int) {
         super.onLoadPackageCheckFail(patchFile, errorCode)
-        LogUtils.d("sodaTinker", "---onLoadPackageCheckFail")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadPackageCheckFail")
     }
 
     override fun onLoadPatchInfoCorrupted(
@@ -64,12 +64,12 @@ class SodaLoadReporter(context: Context?) : DefaultLoadReporter(context) {
         patchInfoFile: File
     ) {
         super.onLoadPatchInfoCorrupted(oldVersion, newVersion, patchInfoFile)
-        LogUtils.d("sodaTinker", "---onLoadPatchInfoCorrupted")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadPatchInfoCorrupted")
     }
 
     override fun onLoadInterpret(type: Int, e: Throwable) {
         super.onLoadInterpret(type, e)
-        LogUtils.d("sodaTinker", "---onLoadInterpret")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG, "---onLoadInterpret")
     }
 
 }

@@ -1,16 +1,24 @@
 package com.xun.sodalibrary.utils
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Environment
+import android.provider.Settings
+import android.telephony.TelephonyManager
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
+import java.io.UnsupportedEncodingException
 import java.text.ParseException
+import java.util.*
 
 /**
  * @Description:
@@ -86,4 +94,87 @@ fun getFileDirPath(): String {
     } else {
         APPLICATION.filesDir?.path ?: ""
     }
+}
+
+fun getAppVersionCode(): String {
+    val manager = APPLICATION.packageManager
+    var name = ""
+    try {
+        val info =
+            manager.getPackageInfo(APPLICATION.packageName, 0)
+        name = info.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+    }
+    return name
+}
+
+@SuppressLint("HardwareIds")
+fun getAndroidId(): String {
+    return Settings.Secure.getString(
+        APPLICATION.contentResolver,
+        Settings.Secure.ANDROID_ID
+    )
+}
+
+@SuppressLint("MissingPermission", "HardwareIds")
+fun getIMEIId(): String {
+    var deviceId = ""
+    try {
+        if (ContextCompat.checkSelfPermission(
+                APPLICATION,
+                "android.permission.READ_PHONE_STATE"
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            val telephony =
+                APPLICATION.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            if (telephony != null) {
+                deviceId = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    telephony.imei
+                } else {
+                    telephony.deviceId
+                }
+            }
+        }
+    } catch (var3: Exception) {
+        var3.printStackTrace()
+    }
+    return deviceId
+}
+
+private var uuid: UUID? = null
+private const val PREFS_DEVICE_ID = "device_id"
+private const val PREFS_FILE = "pre_device.xml"
+fun getDeviceId(): String {
+    if (uuid == null) {
+        synchronized(Objects::class.java) {
+            if (uuid == null) {
+                val prefs = APPLICATION.getSharedPreferences(PREFS_FILE, 0)
+                val id = prefs.getString(PREFS_DEVICE_ID, null)
+                if (id != null) { // Use the ids previously computed and stored in the prefs file
+                    uuid = UUID.fromString(id)
+                } else {
+                    val androidId = getAndroidId()
+                    try {
+                        uuid =
+                            if (!TextUtils.isEmpty(androidId) && "9774d56d682e549c" != androidId) {
+                                UUID.nameUUIDFromBytes(
+                                    androidId.toByteArray(charset("utf8"))
+                                )
+                            } else {
+                                val deviceId = getIMEIId()
+                                if (!TextUtils.equals(deviceId, "unknow")
+                                ) UUID.nameUUIDFromBytes(
+                                    deviceId.toByteArray(charset("utf8"))
+                                ) else UUID.randomUUID()
+                            }
+                    } catch (e: UnsupportedEncodingException) {
+                        e.printStackTrace()
+                    }
+                    prefs.edit().putString(PREFS_DEVICE_ID, uuid.toString()).apply()
+                }
+            }
+        }
+    }
+    return uuid.toString()
 }

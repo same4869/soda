@@ -35,20 +35,13 @@ class SodaTinkerApplicationLike(
 
     private var mInitInApplicationInterface : InitInApplicationInterface? = null
 
-    fun setInitInApplicationInterface(initInApplicationInterface:InitInApplicationInterface){
-        mInitInApplicationInterface = initInApplicationInterface
-    }
-
     interface InitInApplicationInterface{
         fun onInitInApplication(application: Application)
     }
 
-//    abstract fun initInApplication(application: Application)
-
     override fun onCreate() {
         super.onCreate()
         mInitInApplicationInterface?.onInitInApplication(application)
-//        initInApplication(application)
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

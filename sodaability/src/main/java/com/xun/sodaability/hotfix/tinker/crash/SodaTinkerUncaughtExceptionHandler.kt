@@ -22,7 +22,7 @@ class SodaTinkerUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
     private val ueh: Thread.UncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
 
     override fun uncaughtException(thread: Thread, ex: Throwable) {
-        LogUtils.d("sodaTinker uncaughtException ${ex.message}")
+        LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"sodaTinker uncaughtException ${ex.message}")
         tinkerFastCrashProtect()
         tinkerPreVerifiedCrashHandler(ex)
         ueh.uncaughtException(thread, ex)
@@ -37,12 +37,12 @@ class SodaTinkerUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
     private fun tinkerPreVerifiedCrashHandler(ex: Throwable) {
         val applicationLike = TinkerManager.getTinkerApplicationLike()
         if (applicationLike?.application == null) {
-            LogUtils.d("sodaTinker applicationlike is null")
+            LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"sodaTinker applicationlike is null")
             return
         }
 
         if (!TinkerApplicationHelper.isTinkerLoadSuccess(applicationLike)) {
-            LogUtils.d("sodaTinker tinker is not loaded")
+            LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"sodaTinker tinker is not loaded")
             return
         }
 
@@ -68,7 +68,7 @@ class SodaTinkerUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
 
                 if (isCausedByXposed) {
                     SodaTinkerReport.onXposedCrash()
-                    LogUtils.d("sodaTinker have xposed: just clean tinker")
+                    LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"sodaTinker have xposed: just clean tinker")
 
                     //kill all other process to ensure that all process's code is the same.
                     ShareTinkerInternals.killAllOtherProcess(applicationLike.application)
@@ -112,12 +112,12 @@ class SodaTinkerUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
             if (fastCrashCount >= MAX_CRASH_COUNT) {
                 SodaTinkerReport.onFastCrashProtect()
                 TinkerApplicationHelper.cleanPatch(applicationLike)
-                LogUtils.d("tinker has fast crash more than $fastCrashCount, we just clean patch!")
-//                SodaTinkerManager.enterSafeMode(applicationLike.application)
+                LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"tinker has fast crash more than $fastCrashCount, we just clean patch!")
+                SodaTinkerManager.enterSafeMode()
                 return true
             } else {
-                sp.edit().putInt(currentVersion, fastCrashCount).commit()
-                LogUtils.d("tinker has fast crash $fastCrashCount times")
+                sp.edit().putInt(currentVersion, fastCrashCount).apply()
+                LogUtils.d(SodaTinkerManager.SODA_TINKER_LOG_TAG,"tinker has fast crash $fastCrashCount times")
             }
         }
 
