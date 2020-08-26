@@ -20,6 +20,7 @@ import java.io.File
 object SodaTinkerManager {
     const val TINKER_ENTER_SAFE_MODE_COUNT = 3
     const val SODA_TINKER_LOG_TAG = "sodaTinker"
+    private lateinit var mContext: Context
 
     private const val TINKER_PATCH_FOLDER = "/soda_tinker_patch/"
     private const val TINKER_PATCH_NAME = "soda_patch_signed_7zip"
@@ -65,8 +66,26 @@ object SodaTinkerManager {
         this.appChannel = channel
     }
 
+    fun setApplicationContext(context : Context){
+        mContext = context
+    }
+
+    fun getApplicationContext():Context{
+        return mContext
+    }
+
+    private fun mockData(): PatchDataBean {
+        val patchData = PatchDataBean()
+        patchData.patch_url =
+            "https://same4869-test.oss-cn-shanghai.aliyuncs.com/soda_tinker_patch_1.apk"
+        return patchData
+    }
+
     //应该是网络请求后把数据丢进这个方法
+    //TODO 这个方法的扩展性还可以再提升下
     fun syncPatchFromServer(patchData: PatchDataBean) {
+        uploadPatchSucIfNeed()
+
         LogUtils.d(SODA_TINKER_LOG_TAG, " syncPatchFromServer")
         val tinkerSeverInfoBean = if (TINKER_LOCAL_DEBUG) {
             mockData()
@@ -92,7 +111,7 @@ object SodaTinkerManager {
 
             if (patchData.clear_patch) {
                 LogUtils.d(SODA_TINKER_LOG_TAG, "sodaTinker 服务器要求清除补丁")
-                TinkerInstaller.cleanPatch(APPLICATION)
+                TinkerInstaller.cleanPatch(mContext)
                 if (!SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
                         .getBoolean(PATCH_CLEAR_KEY, false)
                 ) {
@@ -114,7 +133,7 @@ object SodaTinkerManager {
             }
         }
 
-        if (getServerBeanInStr(APPLICATION) == Gson().toJson(tinkerSeverInfoBean) && !patchData.focus) {
+        if (getServerBeanInStr(mContext) == Gson().toJson(tinkerSeverInfoBean) && !patchData.focus) {
             LogUtils.d(SODA_TINKER_LOG_TAG, "sodaTinker 和上次保存的数据一致，忽略")
             return
         }
@@ -126,8 +145,8 @@ object SodaTinkerManager {
             savePatchClear(false)
             savePatchApply(false)
             downPatchAndVerify(
-                APPLICATION,
-                APPLICATION.filesDir.path + TINKER_PATCH_FOLDER + TINKER_PATCH_NAME,
+                mContext,
+                mContext.filesDir.path + TINKER_PATCH_FOLDER + TINKER_PATCH_NAME,
                 tinkerSeverInfoBean
             )
         }
@@ -135,7 +154,7 @@ object SodaTinkerManager {
 
     fun syncUpgradePatch() {
         LogUtils.d(SODA_TINKER_LOG_TAG, "sodaTinker syncUpgradePatch")
-        val lastServerPatchStr = getServerBeanInStr(APPLICATION)
+        val lastServerPatchStr = getServerBeanInStr(mContext)
         if (lastServerPatchStr.isNullOrBlank()) {
             LogUtils.d(
                 SODA_TINKER_LOG_TAG,
@@ -144,7 +163,7 @@ object SodaTinkerManager {
             return
         }
 
-        val patchPath = APPLICATION.filesDir.path + TINKER_PATCH_FOLDER + TINKER_PATCH_NAME
+        val patchPath = mContext.filesDir.path + TINKER_PATCH_FOLDER + TINKER_PATCH_NAME
 
         if (SodaFileUtil.fileIsExists(patchPath)) {
             val md5 =
@@ -155,11 +174,11 @@ object SodaTinkerManager {
                 SODA_TINKER_LOG_TAG,
                 "sodaTinker md5${md5} lastServerPatchStr:$lastServerPatchStr"
             )
-            if (TINKER_LOCAL_DEBUG) {
+            if (md5 == tinkerSeverInfoBean.patch_md5 || TINKER_LOCAL_DEBUG) {
                 LogUtils.d(SODA_TINKER_LOG_TAG, "sodaTinker 尝试应用补丁")
                 setupPatchFeedbackInfo("patch apply", 1)
                 TinkerInstaller.onReceiveUpgradePatch(
-                    APPLICATION, patchPath
+                    mContext, patchPath
                 )
                 savePatchApply(true)
             } else {
@@ -171,7 +190,7 @@ object SodaTinkerManager {
         }
     }
 
-    fun uploadPatchSucIfNeed() {
+    private fun uploadPatchSucIfNeed() {
         if (SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
                 .getBoolean(
                     PATCH_LOAD_SUCCESS_KEY,
@@ -195,7 +214,7 @@ object SodaTinkerManager {
         patchCreateFeedbackBean.channel = appChannel
         patchCreateFeedbackBean.device_id = getDeviceId()
 
-        val localData = getServerBeanInStr(APPLICATION, type)
+        val localData = getServerBeanInStr(mContext, type)
         if (!localData.isNullOrBlank()) {
             val patchDataBean = Gson().fromJson(
                 localData,
@@ -205,7 +224,7 @@ object SodaTinkerManager {
         } else {
             if (type == 1) {
                 val patchDataBean2 = Gson().fromJson(
-                    getServerBeanInStr(APPLICATION, 0),
+                    getServerBeanInStr(mContext, 0),
                     PatchDataBean::class.java
                 )
                 if (patchDataBean2 != null) {
@@ -234,17 +253,17 @@ object SodaTinkerManager {
     }
 
     //这个只是防止重复一直上报的
-    fun savePatchLoadedSuc(isLoadedSuc: Boolean) {
+    private fun savePatchLoadedSuc(isLoadedSuc: Boolean) {
         SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
             .put(PATCH_LOADED_SUCCESS_KEY, isLoadedSuc)
     }
 
-    fun savePatchClear(isclear: Boolean) {
+    private fun savePatchClear(isclear: Boolean) {
         SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
             .put(PATCH_CLEAR_KEY, isclear)
     }
 
-    fun savePatchApply(isApply: Boolean) {
+    private fun savePatchApply(isApply: Boolean) {
         SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
             .put(PATCH_IS_APPLY, isApply)
     }
@@ -252,13 +271,6 @@ object SodaTinkerManager {
     fun getPatchApply(context: Context): Boolean {
         return SodaSPUtils.getInstance(SodaSPUtils.SpName.SP_TABLE_TINKER)
             .getBoolean(PATCH_IS_APPLY, false)
-    }
-
-    private fun mockData(): PatchDataBean {
-        val patchData = PatchDataBean()
-        patchData.patch_url =
-            "https://same4869-test.oss-cn-shanghai.aliyuncs.com/soda_tinker_patch_1.apk"
-        return patchData
     }
 
     fun addSafeModeCount(): Int {

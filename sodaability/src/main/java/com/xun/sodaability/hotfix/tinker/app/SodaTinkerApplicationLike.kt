@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.multidex.MultiDex
 import com.tencent.tinker.entry.DefaultApplicationLike
 import com.tencent.tinker.lib.tinker.Tinker
+import com.xun.sodaability.hotfix.tinker.SodaTinker
 import com.xun.sodaability.hotfix.tinker.manager.TinkerManager
 import com.xun.sodalibrary.utils.APPLICATION
 
@@ -49,7 +50,8 @@ class SodaTinkerApplicationLike(
         super.onBaseContextAttached(base)
         //you must install multiDex whatever tinker is installed!
         MultiDex.install(base)
-        APPLICATION = application
+//        APPLICATION = application
+        SodaTinker.setSodaTinkerContext(application)
 
         TinkerManager.setTinkerApplicationLike(this)
 

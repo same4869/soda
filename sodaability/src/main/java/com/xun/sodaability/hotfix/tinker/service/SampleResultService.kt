@@ -27,12 +27,12 @@ class SampleResultService : DefaultTinkerResultService() {
         val handler = Handler(Looper.getMainLooper())
         handler.post {
             if (result.isSuccess) {
-                SodaTinkerManager.setupPatchFeedbackInfo(applicationContext,"patch merge success",1)
+                SodaTinkerManager.setupPatchFeedbackInfo("patch merge success",1)
 //                Toast.makeText(applicationContext, "patch success, please restart process", Toast.LENGTH_LONG).show()
                 SodaTinkerManager.resetSafeModeCount()
                 SodaTinkerManager.exitSafeMode()
             } else {
-                SodaTinkerManager.setupPatchFeedbackInfo(applicationContext,"patch merge failed",1)
+                SodaTinkerManager.setupPatchFeedbackInfo("patch merge failed",1)
                 if(SodaTinkerManager.addSafeModeCount() >= SodaTinkerManager.TINKER_ENTER_SAFE_MODE_COUNT){
                     SodaTinkerManager.enterSafeMode()
                 }

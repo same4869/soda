@@ -1,5 +1,6 @@
 package com.xun.sodaability.hotfix.tinker
 
+import android.content.Context
 import com.xun.sodaability.hotfix.tinker.bean.PatchDataBean
 import com.xun.sodaability.hotfix.tinker.manager.SodaTinkerManager
 
@@ -10,11 +11,17 @@ import com.xun.sodaability.hotfix.tinker.manager.SodaTinkerManager
  */
 
 object SodaTinker {
+    /**
+     * application里面会自动调用，一般不需要自己调
+     */
+    fun setSodaTinkerContext(context: Context) {
+        SodaTinkerManager.setApplicationContext(context)
+    }
 
     /**
      * 初始化一些配置变量，因为不是必须，所以不强制
      */
-    fun init(appChannel: String = "", isDebug: Boolean = false){
+    fun init(appChannel: String = "", isDebug: Boolean = false) {
         SodaTinkerManager.setAppChannel(appChannel)
         SodaTinkerManager.setIsDebug(isDebug)
     }
