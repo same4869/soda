@@ -14,9 +14,12 @@ import com.xun.sodalibrary.utils.APPLICATION
  * @CreateDate:     2020/7/16
  */
 
+//TODO 使用library库里的tinkerapplication作为入口时没办法调到上层的这个类，需要看看怎么解决
 class SodaSampleApplication : SodaTinkerApplicationLike.InitInApplicationInterface {
 
     override fun onInitInApplication(application: Application) {
+//        SodaTinkerApplicationLike.APP_LIKE_INSTANCE?.setInitInApplicationInterface(this)
+
         APPLICATION = application
 
         SodaLogManager.init(object : SodaLogConfig() {

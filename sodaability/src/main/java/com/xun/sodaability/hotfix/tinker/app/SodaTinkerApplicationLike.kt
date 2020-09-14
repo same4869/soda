@@ -34,15 +34,25 @@ class SodaTinkerApplicationLike(
     tinkerResultIntent
 ) {
 
-    private var mInitInApplicationInterface : InitInApplicationInterface? = null
+    companion object {
+        var APP_LIKE_INSTANCE: SodaTinkerApplicationLike? = null
+    }
 
-    interface InitInApplicationInterface{
+    private var mInitInApplicationInterface: InitInApplicationInterface? = null
+
+    interface InitInApplicationInterface {
         fun onInitInApplication(application: Application)
+    }
+
+    fun setInitInApplicationInterface(initInApplicationInterface: InitInApplicationInterface) {
+        mInitInApplicationInterface = initInApplicationInterface
     }
 
     override fun onCreate() {
         super.onCreate()
+        APP_LIKE_INSTANCE = this
         mInitInApplicationInterface?.onInitInApplication(application)
+        APPLICATION = application
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

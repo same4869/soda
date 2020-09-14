@@ -1,0 +1,16 @@
+{
+  "retcode":0,
+  "message":"OK",
+  "data":{
+    "list":[
+      {
+        "name":"stoken",
+        "token":"Jm1nCnAZXg14UVRYn1p6XoqTI9P4tHazKcfmvP8O222222"
+      },
+      {
+        "name":"ltoken",
+        "token":"iNo6PaNY5YCt0GkK0C7chijFkhhWlAP3PC1nO9Hr3333333"
+      }
+    ]
+  }
+}

@@ -8,12 +8,17 @@ import com.xun.soda.download.SodaDownloadActivity
 import com.xun.soda.executor.SodaExecutorActivity
 import com.xun.soda.hotfix.SodaHotfixTinkerActivity
 import com.xun.soda.log.SodaLogSampleActivity
+import com.xun.soda.net.RetrofitClient
+import com.xun.soda.net.converter.exception.BaseErrorConsumer
 import com.xun.soda.recyclerview.SodaRecyclerViewActivity
 import com.xun.soda.refresh.SodaRefreshSampleActivity
 import com.xun.soda.sodaclean.SodaCleanActivity
 import com.xun.soda.tabview.SodaTabBottomSampleActivity
 import com.xun.soda.tabview.SodaTabTopSampleActivity
+import com.xun.sodaability.comm.applySchedulers
 import com.xun.sodaability.comm.onClick
+import com.xun.sodalibrary.log.SodaLog
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -59,6 +64,15 @@ class MainActivity : AppCompatActivity() {
 
         mSodaHotFixTinker.onClick {
             startTargetActivity(SodaHotfixTinkerActivity::class.java)
+        }
+
+        mSodaMock.onClick {
+            RetrofitClient.getApiServiceWithBaseUrl().requestCreateVerification().applySchedulers()
+                .subscribe(
+                    Consumer {
+                        SodaLog.d("mock data : " + it.data)
+                    }, BaseErrorConsumer()
+                )
         }
     }
 
