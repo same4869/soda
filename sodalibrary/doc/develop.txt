@@ -13,3 +13,9 @@
 
 #### Soda Executor
 1.通用线程池，支持线程结果回调，暂停，恢复线程池
+
+#### native签名校验与获得字符串
+1.java层代码位于com.xun.sodalibrary.utils
+2.c++层代码位于jni/jniccc.cpp
+3.提供在native层获得一些字符串（比如加密的key）的方法，同时会校验apk的签名是否符合，否则直接退出
+4.需要自行ndk-build出对应平台的so包，目前使用的是ndk版本21

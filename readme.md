@@ -13,6 +13,7 @@
 - 通用日志打印器SodaLog
 - api mock组件（基于retrofit）
 - 常用工具（文件工具类，sp工具类）
+- native签名校验与获得字符串
 
 #### `sodaui`:
 - 通用轮播图SodaBanner

@@ -18,6 +18,7 @@ import com.xun.soda.tabview.SodaTabTopSampleActivity
 import com.xun.sodaability.comm.applySchedulers
 import com.xun.sodaability.comm.onClick
 import com.xun.sodalibrary.log.SodaLog
+import com.xun.sodalibrary.utils.Ccc
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        SodaLog.d("sign -> " + Ccc.cdf())
 
         mLogBtn.setOnClickListener {
             startTargetActivity(SodaLogSampleActivity::class.java)
